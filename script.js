@@ -644,7 +644,39 @@ saveButton.addEventListener("click", () => {
   alert("Plano salvo neste navegador para você continuar depois.");
 });
 
-printButton.addEventListener("click", () => window.print());
+printButton.addEventListener("click", async () => {
+  const originalText = printButton.textContent;
+  printButton.disabled = true;
+  printButton.textContent = "Gerando PDF...";
+
+  try {
+    if (window.html2pdf) {
+      const safeName = (collectFormData().name || "usuario").toLowerCase().replace(/\s+/g, "-");
+      const exportNode = resultSection.cloneNode(true);
+      exportNode.classList.remove("hidden");
+
+      const options = {
+        margin: [10, 10, 10, 10],
+        filename: `fit-teller-plano-${safeName}.pdf`,
+        image: { type: "jpeg", quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true },
+        jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+        pagebreak: { mode: ["css", "legacy"] },
+      };
+
+      await window.html2pdf().set(options).from(exportNode).save();
+      return;
+    }
+
+    window.print();
+  } catch (error) {
+    console.error("Falha ao gerar PDF:", error);
+    alert("Não foi possível gerar o PDF automaticamente. Tente novamente ou use a opção de impressão do navegador.");
+  } finally {
+    printButton.disabled = false;
+    printButton.textContent = originalText;
+  }
+});
 
 function initialize() {
   renderStep();

@@ -1,0 +1,63 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 140 24% 96%;
+    --foreground: 154 20% 16%;
+    --card: 0 0% 100%;
+    --card-foreground: 154 20% 16%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 154 20% 16%;
+    --primary: 152 49% 31%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 140 18% 92%;
+    --secondary-foreground: 154 20% 18%;
+    --muted: 140 18% 93%;
+    --muted-foreground: 155 10% 42%;
+    --accent: 145 25% 89%;
+    --accent-foreground: 154 20% 18%;
+    --destructive: 0 75% 56%;
+    --border: 144 16% 84%;
+    --input: 144 16% 84%;
+    --ring: 152 49% 31%;
+    --radius: 1.25rem;
+    --chart-1: 152 49% 31%;
+    --chart-2: 186 45% 42%;
+    --chart-3: 41 78% 58%;
+    --chart-4: 19 80% 61%;
+    --chart-5: 220 42% 46%;
+    --sidebar: 157 23% 15%;
+    --sidebar-foreground: 0 0% 97%;
+    --sidebar-primary: 151 47% 45%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 155 19% 23%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 155 17% 22%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background font-sans text-foreground antialiased;
+    background-image:
+      radial-gradient(circle at top left, rgba(57, 128, 102, 0.14), transparent 28%),
+      radial-gradient(circle at right top, rgba(98, 161, 139, 0.12), transparent 22%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(243, 247, 244, 0.95) 100%);
+  }
+
+  #root {
+    @apply min-h-screen;
+  }
+}
+
+@layer utilities {
+  .surface-panel {
+    @apply rounded-2xl border border-white/70 bg-white/90 shadow-soft backdrop-blur-sm;
+  }
+}
